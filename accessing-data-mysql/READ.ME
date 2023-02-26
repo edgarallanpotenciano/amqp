@@ -1,0 +1,117 @@
+PREREQUISITES
+=============
+
+Modify the application.properties depending on the database that you are using
+[YourFolder\accessing-data-mysql\src\main\resources\application.properties]
+[sample entry for MySQL dbms]
+
+spring.jpa.hibernate.ddl-auto=update
+spring.datasource.url=jdbc:mysql://localhost:3306/world
+spring.datasource.username='your user'
+spring.datasource.password='your password'
+spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
+#spring.jpa.show-sql: true
+
+
+
+ALL THE SQL (Note I use MySQL DBMS)
+===========
+
+CREATING A SAMPLE FLIGHT TABLE
+==============================
+
+CREATE TABLE FLIGHTS (
+    flightId int NOT NULL AUTO_INCREMENT,
+    airlineCode varchar(2),
+    flightNumber varchar(5) NOT NULL,
+    departurePort varchar(5),
+    arrivalPort varchar(5),
+    departureTime datetime,
+    arrivalTime datetime,
+    PRIMARY KEY (flightId)
+);
+
+ALTER TABLE FLIGHTS AUTO_INCREMENT=100
+
+INSERTING VALUES MANUALLY
+=========================
+(Note: This is for extracting flights API, there's a separate API for inserting values to the FLIGHTS TABLE)
+
+insert into flights(airlineCode, flightNumber, departurePort, arrivalPort, departureTime, arrivalTime) values ('EK', 'EK321', 'MEL', 'SYD', '2023-01-12 10:01:00', '2023-01-12 11:01:00');
+insert into flights(airlineCode, flightNumber, departurePort, arrivalPort, departureTime, arrivalTime) values ('EK', 'EK212', 'QLD', 'WA', '2023-01-13 22:15:00', '2023-01-13 23:15:00');
+insert into flights(airlineCode, flightNumber, departurePort, arrivalPort, departureTime, arrivalTime) values ('EK', 'EK901', 'MEL', 'VIC', '2023-02-14 07:00:00', '2023-02-14 08:00:00');
+insert into flights(airlineCode, flightNumber, departurePort, arrivalPort, departureTime, arrivalTime) values ('EK', 'EK701', 'VIC', 'NSW', '2023-02-20 15:15:00', '2023-02-20 16:30:00');
+insert into flights(airlineCode, flightNumber, departurePort, arrivalPort, departureTime, arrivalTime) values ('EK', 'EK843', 'WA', 'SA', '2023-03-12 01:00:00', '2023-03-12 01:45:00');
+insert into flights(airlineCode, flightNumber, departurePort, arrivalPort, departureTime, arrivalTime) values ('EK', 'EK425', 'SA', 'VIC', '2023-03-15 19:00:00', '2023-03-15 21:00:00');
+
+insert into flights(airlineCode, flightNumber, departurePort, arrivalPort, departureTime, arrivalTime) values ('QF', 'QF321', 'MEL', 'SYD', '2023-01-05 11:30:00', '2023-01-05 12:30:00');
+insert into flights(airlineCode, flightNumber, departurePort, arrivalPort, departureTime, arrivalTime) values ('QF', 'QF621', 'TAS', 'MEL', '2023-01-07 12:15:00', '2023-01-07 13:15:00');
+insert into flights(airlineCode, flightNumber, departurePort, arrivalPort, departureTime, arrivalTime) values ('QF', 'QF733', 'QLD', 'SA', '2023-01-12 13:30:00', '2023-01-12 14:30:00');
+insert into flights(airlineCode, flightNumber, departurePort, arrivalPort, departureTime, arrivalTime) values ('QF', 'QF900', 'NSW', 'VIC', '2023-02-05 14:45:00', '2023-02-05 15:45:00');
+insert into flights(airlineCode, flightNumber, departurePort, arrivalPort, departureTime, arrivalTime) values ('QF', 'QF103', 'TAS', 'WA', '2023-02-07 15:00:00', '2023-02-07 16:00:00');
+insert into flights(airlineCode, flightNumber, departurePort, arrivalPort, departureTime, arrivalTime) values ('QF', 'QF222', 'VIC', 'SA', '2023-02-12 17:30:00', '2023-02-12 18:30:00');
+
+
+
+insert into flights(airlineCode, flightNumber, departurePort, arrivalPort, departureTime, arrivalTime) values ('CX', 'CX123', 'TAS', 'SYD', '2023-01-02 03:30:00', '2023-01-02 04:30:00');
+insert into flights(airlineCode, flightNumber, departurePort, arrivalPort, departureTime, arrivalTime) values ('CX', 'CX432', 'MEL', 'TAS', '2023-01-03 04:15:00', '2023-01-03 05:15:00');
+insert into flights(airlineCode, flightNumber, departurePort, arrivalPort, departureTime, arrivalTime) values ('CX', 'CX098', 'WA', 'SA', '2023-02-01 13:00:00', '2023-02-01 14:00:00');
+insert into flights(airlineCode, flightNumber, departurePort, arrivalPort, departureTime, arrivalTime) values ('CX', 'CX654', 'VIC', 'TAS', '2023-02-02 11:15:00', '2023-02-02 12:15:00');
+insert into flights(airlineCode, flightNumber, departurePort, arrivalPort, departureTime, arrivalTime) values ('CX', 'CX631', 'SYD', 'QLD', '2023-02-03 14:00:00', '2023-02-03 15:00:00');
+insert into flights(airlineCode, flightNumber, departurePort, arrivalPort, departureTime, arrivalTime) values ('CX', 'CX400', 'QLD', 'MEL', '2023-02-04 10:30:00', '2023-02-04 11:30:00');
+insert into flights(airlineCode, flightNumber, departurePort, arrivalPort, departureTime, arrivalTime) values ('CX', 'CX403', 'WA', 'SYD', '2023-02-05 08:15:00', '2023-02-05 09:15:00');
+insert into flights(airlineCode, flightNumber, departurePort, arrivalPort, departureTime, arrivalTime) values ('CX', 'CX405', 'SA', 'TAS', '2023-03-01 13:15:00', '2023-03-01 14:15:00');
+insert into flights(airlineCode, flightNumber, departurePort, arrivalPort, departureTime, arrivalTime) values ('CX', 'CX788', 'TAS', 'WA', '2023-03-02 15:15:00', '2023-03-02 16:15:00');
+insert into flights(airlineCode, flightNumber, departurePort, arrivalPort, departureTime, arrivalTime) values ('CX', 'CX007', 'QLD', 'SYD', '2023-03-03 09:15:00', '2023-03-03 10:15:00');
+insert into flights(airlineCode, flightNumber, departurePort, arrivalPort, departureTime, arrivalTime) values ('CX', 'CX009', 'SA', 'TAS', '2023-03-04 10:30:00', '2023-03-04 11:30:00');
+
+ABBREVIATIONS: 
+
+NSW - New South Wales
+QLD - Queensland
+SA - South Australia
+TAS - Tasmania
+VIC - Victoria
+WA - Wester Australia
+SYD - Sydnew
+MEL - Melbourne
+
+TIME FORMATS:
+=============
+
+UTC ISO8601
+
+Time format is:
+yyyy-dd-MM
+
+and time format is:
+HH:mm:ss
+
+URLS FOR TESTING (also see the documentation)
+================
+
+SEARCH FOR ALL FLIGHTS:
+=======================
+
+localhost:8080/allflights
+
+SEARCH BY AIRLINE CODES:
+========================
+
+localhost:8080/flightbycode?airlinecode=CX
+
+localhost:8080/flightbycode?airlinecode=QF
+
+localhost:8080/flightbycode?airlinecode=EK
+
+JAVA FILES
+==========
+
+AccessingDataMysqlApplication - the springboot main file
+Flight -- the entity class
+FlightController -- the controller class
+FlightRepository -- the repository
+FlightService -- the service class
+
+
+
